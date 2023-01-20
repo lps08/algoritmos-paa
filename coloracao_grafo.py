@@ -5,11 +5,9 @@ class Graph():
     Complexidade: O(m^V)
     """
   
-    def __init__(self, vertices):
+    def __init__(self, vertices, graph):
         self.V = vertices
-        # se nao passar um grafo, ele gera uma matriz preenchida com zeros
-        self.graph = [[0 for column in range(vertices)]
-                      for row in range(vertices)]
+        self.graph = graph
   
     def isSafe(self, v, colour, c):
         """Função que irá verificar se o colorArray atual do gráfico é seguro ou não.
@@ -18,7 +16,7 @@ class Graph():
         ----------
         v: vertice atual para ser analisado se pode colorir
         colour: array de cores
-        c: vertice alvo para verificar se a cor vai ser igual
+        c: cor para testar se é possivel colorir o certice v
         """
         for i in range(self.V):
             # verifica se os vizinhos do vertice v possui a mesma cor que os vértices vizinhos
@@ -44,14 +42,15 @@ class Graph():
   
         for c in range(1, m + 1):
             # verifica se é possivel colorir o vertice atual com a cor c
-            if self.isSafe(v, colour, c) == True:
+            if self.isSafe(v, colour, c):
                 # se foi possivel, atribui a cor ao vertice analisado
                 colour[v] = c
                 # analisa recursivamente os proximos vertices para tentar colorir 
-                if self.graphColourUtil(m, colour, v + 1) == True:
+                if self.graphColourUtil(m, colour, v + 1):
                     return True
-
-                # backtrack
+                    
+                #reseta a cor atual pois deu conflito com o vertice v+1
+                #testando agora a cor c+1
                 colour[v] = 0
   
     def graphColouring(self, m):
@@ -78,11 +77,12 @@ class Graph():
   
   
 if __name__ == '__main__':
-    g = Graph(4)
-    g.graph = [[0, 1, 1, 1],
-               [1, 0, 1, 0], 
-               [1, 1, 0, 1], 
-               [1, 0, 1, 0]]
+    graph =[[0, 1, 1, 1],
+            [1, 0, 1, 0], 
+            [1, 1, 0, 1], 
+            [1, 0, 1, 0]]
+
+    g = Graph(4, graph)
     m = 3
   
     g.graphColouring(m)
