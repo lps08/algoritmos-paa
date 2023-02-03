@@ -4,6 +4,10 @@
   ```
   python cadeia_matrizes.py
   ```
+### Programação Dinâmica: Fibonacci
+  ```
+  python fib_prog_dinamica.py
+  ```
 ### Divisão e conquista: Cálculo de potência (x, n)
   ```
   python calculo_potencia.py
