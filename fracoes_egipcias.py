@@ -1,4 +1,3 @@
-
 # Python3 programa que mostra uma fração
 # na forma egipcia usando algoritmo guloso
 # Algorithm
@@ -35,6 +34,7 @@ def fracaoEgipcia(nr, dr):
         ef.append(x)
  
         # atualizando novo nr e dr
+		# realizando a operacao de (nr/dr - 1/x)
         nr = x * nr - dr
         dr = dr * x
  
